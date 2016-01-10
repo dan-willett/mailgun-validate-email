@@ -21,7 +21,7 @@ module.exports = function (apiKey) {
         var result = JSON.parse(res.request.response.body)
         cb(null, result)
       } catch (err) {
-        console.log("Unable to Parse MailGun Response: res.request.response.body");
+        console.log("Unable to Parse MailGun Response: " + res.request.response.body);
         cb(err)
       }
     })
