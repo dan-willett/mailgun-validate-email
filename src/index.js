@@ -5,6 +5,7 @@ module.exports = function (apiKey) {
     var options = {
       url: 'https://api.mailgun.net/v2/address/validate',
       method: 'GET',
+      timeout: 4000,
       qs: {
         address: email
       },
