@@ -2,11 +2,11 @@ mailgun-validate-email
 =================
 
 Super tiny wrapper of email validation API from [Mailgun](http://www.mailgun.com/),
-useful in form validation. This can be most useful in form validation to avoid those pesky spam emails. 
+useful in form validation. This can be most useful in form validation to avoid those pesky spam emails.
 
 ### Disclaimer
 This module uses a third party service from Mailgun to verify the validity of the email,
-you can read all the info in their [API docs](http://documentation.mailgun.com/api-email-validation.html)  
+you can read all the info in their [API docs](http://documentation.mailgun.com/api-email-validation.html)
 Emails are *securely transmitted* using Public Key Cryptography
 
 # Badgers
@@ -22,30 +22,52 @@ Emails are *securely transmitted* using Public Key Cryptography
 npm install mailgun-validate-email --save
 ```
 
+With callback:
+
 ```javascript
-var validator = require('mailgun-validate-email')('INSERT-YOUR-MAILGUN-PUBKEY-HERE')
+var validator = require('mailgun-validate-email')('INSERT-YOUR-MAILGUN-PUBKEY-HERE');
 validator("banana@papaia.com", function (err, result){
   if(err) {
-    // email was not valid
+    // error calling validation service
   } else {
-    console.log(result);
-    // register the person for your service etc.
+	console.log(result);
+	// check results and
+    // register the person for your service etc if valid.
   }
-})
+});
+```
+
+With promise:
+```javascript
+const validator = require('mailgun-validate-email')('INSERT-YOUR-MAILGUN-PUBKEY-HERE');
+
+let result;
+try {
+  result = await validator("banana@papaia.com");
+}
+catch(err) {
+	// error calling validation service
+}
+console.log(result);
+// check results and act on them.
+
 ```
 
 Output will be something like
 
 ```javascript
 {
+  address: "banana@papaia.com",
+  did_you_mean: "banana@papaia.com",
+  is_disposable_address: false,
+  is_role_address: false,
   is_valid: true,
   parts: {
     local_part: banana,
     domain: papaia.com,
     display_name: null
   },
-  address: 'banana@papaia.com',
-  did_you_mean: null
+  reason: null
 }
 ```
 
@@ -53,20 +75,20 @@ Output will be something like
 ### *Why* use Third-Party Email Validation?
 
 There are *easier* ways of checking if an email conforms to the correct *format*
-e.g: using [**Joi**](https://github.com/hapijs/joi#example) `Joi.string().email()`  
+e.g: using [**Joi**](https://github.com/hapijs/joi#example) `Joi.string().email()`
 But a validation library only checks that the address "*looks*" valid,
 the Mailgun API actually checks if the domain has a valid [**DNS mx record**](http://en.wikipedia.org/wiki/MX_record)
 (checking if the domain *accepts* emails).
 
-This means you don't waste time (or money) sending emails to **valid@foo.bar**  
+This means you don't waste time (or money) sending emails to **valid@foo.bar**
 (*valid* email address which will *fail* to deliver and thus
   clog up your inbox with failure reports!)
 
   **Note**: this will *not* prevent people from registering with your
-  service/app using a *real* email they *don't control*.  
-  e.g: **barack@whitehouse.gov** ...  
+  service/app using a *real* email they *don't control*.
+  e.g: **barack@whitehouse.gov** ...
   so you should still get people to *confirm* their email address by sending them
-  an email with a unique token.  
+  an email with a unique token.
   (this will prevent people registering as someone else)
 
 
