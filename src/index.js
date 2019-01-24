@@ -2,6 +2,16 @@ var request = require('request')
 
 module.exports = function (apiKey) {
   return function validator (email, cb) {
+    const func = this.validator;
+
+    if (cb === undefined) {
+      return new Promise(function (resolve, reject) {
+        func(email, function (err, result) {
+          err ? reject(err) : resolve(result)
+        })
+      })
+    }
+
     var options = {
       url: 'https://api.mailgun.net/v2/address/validate',
       method: 'GET',
