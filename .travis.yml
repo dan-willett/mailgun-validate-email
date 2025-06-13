@@ -1,13 +1,35 @@
 language: node_js
 node_js:
-  - "0.10"
+  - "22.x"
+  - "lts/*"
+  - "node"
+
+os:
+  - linux
+  - windows
+  - osx
 
 branches:
   only:
+    - main
     - master
 
+cache:
+  directories:
+    - node_modules
+
 before_install:
-  - npm i -g npm
-  # Workaround for a permissions issue with Travis virtual machine images
+  - npm install -g npm@latest
+
 script:
+  - npm run lint
   - npm test
+  - npm run test:coverage
+
+after_success:
+  - npm run coverage
+
+notifications:
+  email: false
+  webhooks: false
+  

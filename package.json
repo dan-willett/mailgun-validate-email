@@ -1,22 +1,20 @@
 {
   "name": "mailgun-validate-email",
-  "version": "2.0.3",
+  "version": "4.0.0",
   "description": "validate email addresses with mailgun API",
-  "main": "src/index.js",
-  "scripts": {
-    "lint": "standard",
-    "test": "node ./node_modules/.bin/lab -r tap tests/*-test.js | ./node_modules/.bin/tap-spec",
-    "test-cov": "node ./node_modules/.bin/lab -t 88 tests/*-test.js",
-    "test-cov-html": "node ./node_modules/.bin/lab -r html -o coverage.html tests/*-test.js"
+  "type": "module",
+  "exports": "./src/index.js",
+  "engines": {
+    "node": ">=22.0.0"
   },
-  "pre-commit": [
-    "lint",
-    "test",
-    "test-cov"
-  ],
+  "scripts": {
+    "test": "node --test",
+    "lint": "eslint .",
+    "test:coverage": "c8 node --test"
+  },
   "repository": {
     "type": "git",
-    "url": "https://github.com/diasdavid/mailgun-validate-email"
+    "url": "https://github.com/dan-willett/mailgun-validate-email"
   },
   "keywords": [
     "mailgun",
@@ -27,20 +25,17 @@
     "scam",
     "valid"
   ],
-  "author": "David Dias",
+  "author": "Dan Willett",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/diasdavid/mailgun-validate-email"
+    "url": "https://github.com/dan-willett/mailgun-validate-email/issues"
   },
   "dependencies": {
-    "request": "^2.25.0"
+    "node-fetch": "^3.3.2"
   },
   "devDependencies": {
-    "code": "^1.2.1",
-    "jscs": "^1.7.3",
-    "jshint": "^2.5.10",
-    "lab": "^5.0.3",
-    "pre-commit": "^1.1.2",
-    "tap-spec": "^2.1.0"
+    "c8": "^9.1.0",
+    "eslint": "^8.56.0",
+    "eslint-config-standard": "^17.1.0"
   }
 }
