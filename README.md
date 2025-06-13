@@ -19,9 +19,9 @@ A modern, lightweight wrapper for the Mailgun v4 Inbox Ready API. This module he
 ## Installation
 
 ```sh
-npm install mailgun-validate-email
+npm install mailgun-validate-email-esm
 # or
-yarn add mailgun-validate-email
+yarn add mailgun-validate-email-esm
 ```
 
 ## Usage
@@ -29,7 +29,7 @@ yarn add mailgun-validate-email
 ### ES Modules (Recommended)
 
 ```javascript
-import createValidator from 'mailgun-validate-email';
+import createValidator from 'mailgun-validate-email-esm';
 
 // Create validator instance with your Mailgun public API key
 const validate = createValidator('your-mailgun-public-key');
@@ -78,7 +78,7 @@ The validation result includes the following fields:
 ### Configuration Options
 
 ```javascript
-import createValidator from 'mailgun-validate-email';
+import createValidator from 'mailgun-validate-email-esm';
 
 const validate = createValidator('your-api-key', {
   providerLookup: true,  // Enable/disable provider lookup (default: true)
