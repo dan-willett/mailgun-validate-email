@@ -1,7 +1,7 @@
 {
-  "name": "@dan-willett/mailgun-validate-email",
+  "name": "mailgun-validate-email-esm",
   "version": "4.0.1",
-  "description": "validate email addresses with mailgun API",
+  "description": "Validate email addresses using Mailgun API",
   "type": "module",
   "exports": "./src/index.js",
   "engines": {
