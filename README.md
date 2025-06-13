@@ -1,4 +1,4 @@
-# mailgun-validate-email
+# mailgun-validate-email-esm
 
 [![Node.js Version](https://img.shields.io/badge/node-%3E%3D22.0.0-brightgreen.svg)](https://nodejs.org/)
 [![github version](https://badge.fury.io/gh/dan-willett%2Fmailgun-validate-email.svg)](https://badge.fury.io/gh/dan-willett%2Fmailgun-validate-email)
